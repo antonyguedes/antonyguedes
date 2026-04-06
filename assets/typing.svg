@@ -8,14 +8,6 @@
         fill: #a78bfa;
         dominant-baseline: middle;
       }
-      .cursor {
-        fill: #a78bfa;
-        animation: blink 0.75s step-end infinite;
-      }
-      @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50%       { opacity: 0; }
-      }
 
       /* Each line fades in and out in sequence */
       .line { opacity: 0; }
@@ -42,6 +34,4 @@
   <text x="50%" y="50%" text-anchor="middle" class="line l3">I'm going to become a Software Architect</text>
   <text x="50%" y="50%" text-anchor="middle" class="line l4">That's my Coding Way 🥷💻</text>
 
-  <!-- blinking cursor anchored right of center estimate -->
-  <rect class="cursor" x="302" y="17" width="2" height="16"/>
 </svg>
