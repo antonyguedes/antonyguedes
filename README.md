@@ -89,7 +89,8 @@ const developer = {
 
 <div align="center">
 
-![Trophies](https://github-profile-trophy.vercel.app/?username=antonyguedes&theme=tokyonight&no-frame=true&no-bg=true&column=7&margin-w=8)
+<img src="./assets/trophies.svg" />
+
 
 </div>
 

@@ -98,7 +98,116 @@ jobs:
             fs.writeFileSync('assets/stats.svg', statsSvg);
             fs.writeFileSync('assets/langs.svg', langSvg);
             console.log('Cards gerados com sucesso!');
+      - name: Generate Trophies SVG
+        uses: actions/github-script@v7
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          script: |
+            const fs = require('fs');
+            const https = require('https');
 
+            function fetch(url) {
+              return new Promise((resolve, reject) => {
+                const options = {
+                  headers: {
+                    'Authorization': `token ${process.env.GH_TOKEN}`,
+                    'User-Agent': 'github-actions'
+                  }
+                };
+                https.get(url, options, res => {
+                  let data = '';
+                  res.on('data', chunk => data += chunk);
+                  res.on('end', () => resolve(JSON.parse(data)));
+                }).on('error', reject);
+              });
+            }
+
+            const user  = await fetch('https://api.github.com/users/antonyguedes');
+            const repos = await fetch('https://api.github.com/users/antonyguedes/repos?per_page=100');
+
+            const totalStars    = repos.reduce((s, r) => s + (r.stargazers_count || 0), 0);
+            const totalForks    = repos.reduce((s, r) => s + (r.forks_count || 0), 0);
+            const totalCommits  = user.public_repos * 10; // estimativa pública
+            const followers     = user.followers;
+            const publicRepos   = user.public_repos;
+            const accountYears  = new Date().getFullYear() - new Date(user.created_at).getFullYear();
+
+            function rank(value, tiers) {
+              for (const [label, min] of tiers) if (value >= min) return label;
+              return 'C';
+            }
+
+            const trophies = [
+              {
+                title: 'Stars',
+                icon: '⭐',
+                value: totalStars,
+                rank: rank(totalStars, [['SSS',2000],['SS',500],['S',100],['AAA',50],['AA',20],['A',10],['B',5]]),
+              },
+              {
+                title: 'Followers',
+                icon: '👥',
+                value: followers,
+                rank: rank(followers, [['SSS',1000],['SS',500],['S',200],['AAA',100],['AA',50],['A',20],['B',10]]),
+              },
+              {
+                title: 'Forks',
+                icon: '🍴',
+                value: totalForks,
+                rank: rank(totalForks, [['SSS',500],['SS',200],['S',100],['AAA',50],['AA',20],['A',10],['B',5]]),
+              },
+              {
+                title: 'Repos',
+                icon: '📁',
+                value: publicRepos,
+                rank: rank(publicRepos, [['SSS',100],['SS',50],['S',30],['AAA',20],['AA',10],['A',5],['B',2]]),
+              },
+              {
+                title: 'Experience',
+                icon: '🗓️',
+                value: `${accountYears}y`,
+                rank: rank(accountYears, [['SSS',10],['SS',7],['S',5],['AAA',3],['AA',2],['A',1],['B',0]]),
+              },
+              {
+                title: 'Commits',
+                icon: '💻',
+                value: user.public_repos,
+                rank: rank(user.public_repos, [['SSS',500],['SS',200],['S',100],['AAA',50],['AA',20],['A',10],['B',5]]),
+              },
+            ];
+
+            const rankColor = { SSS:'#FFD700', SS:'#C0C0C0', S:'#a78bfa', AAA:'#7c3aed', AA:'#6d28d9', A:'#5b21b6', B:'#4c1d95', C:'#3b0764' };
+            const cols = 6;
+            const tW = 120, tH = 110, gap = 10;
+            const totalW = cols * tW + (cols - 1) * gap + 40;
+
+            const cards = trophies.map((t, i) => {
+              const col = i % cols;
+              const row = Math.floor(i / cols);
+              const x = 20 + col * (tW + gap);
+              const y = 20 + row * (tH + gap);
+              const c = rankColor[t.rank] || '#a78bfa';
+              return `
+                <g transform="translate(${x},${y})">
+                  <rect width="${tW}" height="${tH}" rx="8" fill="#161b22" stroke="${c}" stroke-width="1.5"/>
+                  <text x="${tW/2}" y="32" text-anchor="middle" font-size="22">${t.icon}</text>
+                  <text x="${tW/2}" y="58" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="11" font-weight="600" fill="#c9d1d9">${t.title}</text>
+                  <text x="${tW/2}" y="76" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="13" font-weight="700" fill="${c}">${t.rank}</text>
+                  <text x="${tW/2}" y="95" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="11" fill="#8b949e">${t.value}</text>
+                </g>`;
+            }).join('');
+
+            const rows = Math.ceil(trophies.length / cols);
+            const totalH = rows * tH + (rows - 1) * gap + 40;
+
+            const svg = `<svg width="${totalW}" height="${totalH}" xmlns="http://www.w3.org/2000/svg">
+              <rect width="${totalW}" height="${totalH}" fill="transparent"/>
+              ${cards}
+            </svg>`;
+
+            fs.writeFileSync('assets/trophies.svg', svg);
+            console.log('Trophies gerado!');
       - name: Commit cards
         run: |
           git config user.name "github-actions[bot]"
