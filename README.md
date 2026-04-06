@@ -1,13 +1,10 @@
 <div align="center">
 
 <!-- ANIMATED HEADER -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:0f0c29,50:302b63,100:24243e&height=200&section=header&text=Full%20Stack%20Developer&fontSize=42&fontColor=ffffff&fontAlignY=38&desc=Web%20%7C%20Mobile%20%7C%20DLT%20%7C%20Data Mining&descAlignY=58&descColor=a78bfa&animation=fadeIn" />
-
+<img width="100%" src="./assets/header.svg" />
 
 <!-- TYPING ANIMATION -->
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=A78BFA&center=true&vCenter=true&width=600&lines=Building+Galaxies+from+Scratch+%F0%9F%8C%8C;Antonio+Guedes;I'm+going+to+become+a+Software Architect;That's my Coding Way+%F0%9F%A5%B7%F0%9F%92%BB" alt="Typing SVG" /></a>
-<br/>
-<br/>
+<img src="./assets/typing.svg" alt="Typing SVG" />
 
 <!-- PROFILE VIEWS & SOCIAL BADGES -->
 ![Profile Views](https://komarev.com/ghpvc/?username=antonyguedes&color=7c3aed&style=flat-square&label=Profile+Views)
