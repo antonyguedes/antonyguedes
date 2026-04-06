@@ -23,7 +23,7 @@ const developer = {
   name:       "Antonio Guedes",
   role:       ["Computer Scientist", "Software Engineer", "Full Stack Dev"],
   formation:  "UFSJ": "Univesidade Federal de São João del-rei",
-  specialty:  "Hyperledger Tech"
+  specialty:  "Hyperledger Tech",
   stack:      ["Web", "Mobile", "DAppss", "Desktop Applications", "UI/UX","Architecture Modeling"],
   currentlyOn: "Freelance - Building Useless Open Source Projects",
   funFact:    "I think in chains — blockchain chains 😄",
