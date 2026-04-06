@@ -1,0 +1,13 @@
+<svg width="495" height="195" xmlns="http://www.w3.org/2000/svg">
+  <rect width="495" height="195" rx="10" fill="#0d1117"/>
+  <text x="25" y="35" font-family="Segoe UI,sans-serif" font-size="15" font-weight="600" fill="#a78bfa">📊 GitHub Stats — antonyguedes</text>
+  <line x1="25" y1="45" x2="470" y2="45" stroke="#30363d" stroke-width="1"/>
+  <text x="25" y="75"  font-family="Segoe UI,sans-serif" font-size="13" fill="#c9d1d9">⭐ Total Stars</text>
+  <text x="470" y="75"  font-family="Segoe UI,sans-serif" font-size="13" fill="#a78bfa" text-anchor="end">2</text>
+  <text x="25" y="105" font-family="Segoe UI,sans-serif" font-size="13" fill="#c9d1d9">🍴 Total Forks</text>
+  <text x="470" y="105" font-family="Segoe UI,sans-serif" font-size="13" fill="#a78bfa" text-anchor="end">0</text>
+  <text x="25" y="135" font-family="Segoe UI,sans-serif" font-size="13" fill="#c9d1d9">📁 Public Repos</text>
+  <text x="470" y="135" font-family="Segoe UI,sans-serif" font-size="13" fill="#a78bfa" text-anchor="end">21</text>
+  <text x="25" y="165" font-family="Segoe UI,sans-serif" font-size="13" fill="#c9d1d9">👥 Followers</text>
+  <text x="470" y="165" font-family="Segoe UI,sans-serif" font-size="13" fill="#a78bfa" text-anchor="end">2</text>
+</svg>

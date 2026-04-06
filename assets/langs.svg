@@ -1,0 +1,19 @@
+<svg width="495" height="267" xmlns="http://www.w3.org/2000/svg">
+  <rect width="495" height="267" rx="10" fill="#0d1117"/>
+  <text x="25" y="35" font-family="Segoe UI,sans-serif" font-size="15" font-weight="600" fill="#a78bfa">💻 Top Languages</text>
+  <line x1="25" y1="45" x2="470" y2="45" stroke="#30363d" stroke-width="1"/>
+  <rect x="25" y="80" width="179" height="10" rx="3" fill="#a78bfa"/><rect x="204" y="80" width="107" height="10" rx="3" fill="#7c3aed"/><rect x="311" y="80" width="45" height="10" rx="3" fill="#6d28d9"/><rect x="356" y="80" width="42" height="10" rx="3" fill="#5b21b6"/><rect x="398" y="80" width="41" height="10" rx="3" fill="#4c1d95"/><rect x="439" y="80" width="26" height="10" rx="3" fill="#3b0764"/>
+  <circle cx="35" cy="125" r="5" fill="#a78bfa"/>
+    <text x="47" y="130" font-family="Segoe UI,sans-serif" font-size="12" fill="#c9d1d9">Blade</text>
+    <text x="470" y="130" font-family="Segoe UI,sans-serif" font-size="12" fill="#a78bfa" text-anchor="end">40.7%</text><circle cx="35" cy="147" r="5" fill="#7c3aed"/>
+    <text x="47" y="152" font-family="Segoe UI,sans-serif" font-size="12" fill="#c9d1d9">Go</text>
+    <text x="470" y="152" font-family="Segoe UI,sans-serif" font-size="12" fill="#a78bfa" text-anchor="end">24.4%</text><circle cx="35" cy="169" r="5" fill="#6d28d9"/>
+    <text x="47" y="174" font-family="Segoe UI,sans-serif" font-size="12" fill="#c9d1d9">TypeScript</text>
+    <text x="470" y="174" font-family="Segoe UI,sans-serif" font-size="12" fill="#a78bfa" text-anchor="end">10.2%</text><circle cx="35" cy="191" r="5" fill="#5b21b6"/>
+    <text x="47" y="196" font-family="Segoe UI,sans-serif" font-size="12" fill="#c9d1d9">Solidity</text>
+    <text x="470" y="196" font-family="Segoe UI,sans-serif" font-size="12" fill="#a78bfa" text-anchor="end">9.5%</text><circle cx="35" cy="213" r="5" fill="#4c1d95"/>
+    <text x="47" y="218" font-family="Segoe UI,sans-serif" font-size="12" fill="#c9d1d9">Rust</text>
+    <text x="470" y="218" font-family="Segoe UI,sans-serif" font-size="12" fill="#a78bfa" text-anchor="end">9.2%</text><circle cx="35" cy="235" r="5" fill="#3b0764"/>
+    <text x="47" y="240" font-family="Segoe UI,sans-serif" font-size="12" fill="#c9d1d9">Java</text>
+    <text x="470" y="240" font-family="Segoe UI,sans-serif" font-size="12" fill="#a78bfa" text-anchor="end">6.0%</text>
+</svg>
