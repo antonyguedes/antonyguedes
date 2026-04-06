@@ -73,12 +73,12 @@ const developer = {
 
 <div align="center">
 
-<img width="49%" src="https://github-readme-stats.vercel.app/api?username=antonyguedes&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=a78bfa&icon_color=a78bfa&text_color=c9d1d9&count_private=true" />
+<img width="49%" src="./assets/stats.svg" />
 <img width="49%" src="https://github-readme-streak-stats.herokuapp.com/?user=antonyguedes&theme=tokyonight&hide_border=true&background=0d1117&ring=a78bfa&fire=a78bfa&currStreakLabel=a78bfa" />
 
 <br/>
 
-<img width="49%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=antonyguedes&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=a78bfa&text_color=c9d1d9&langs_count=8" />
+<img width="49%" src="./assets/langs.svg" />
 <img width="49%" src="https://github-readme-activity-graph.vercel.app/graph?username=antonyguedes&theme=tokyo-night&hide_border=true&bg_color=0d1117&color=a78bfa&line=7c3aed&point=ffffff" />
 
 </div>

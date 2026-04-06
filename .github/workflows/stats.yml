@@ -1,0 +1,108 @@
+name: Generate GitHub Stats
+
+on:
+  schedule:
+    - cron: "0 */24 * * *"   # roda a cada 12 horas
+  workflow_dispatch:           # permite rodar manualmente
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate Stats Card
+        uses: actions/github-script@v7
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          script: |
+            const fs = require('fs');
+            const https = require('https');
+
+            function fetch(url) {
+              return new Promise((resolve, reject) => {
+                const options = {
+                  headers: {
+                    'Authorization': `token ${process.env.GH_TOKEN}`,
+                    'User-Agent': 'github-actions'
+                  }
+                };
+                https.get(url, options, res => {
+                  let data = '';
+                  res.on('data', chunk => data += chunk);
+                  res.on('end', () => resolve(JSON.parse(data)));
+                }).on('error', reject);
+              });
+            }
+
+            // Busca dados do usuário
+            const user = await fetch('https://api.github.com/users/antonyguedes');
+            const repos = await fetch('https://api.github.com/users/antonyguedes/repos?per_page=100');
+
+            // Conta linguagens
+            const langCount = {};
+            for (const repo of repos) {
+              if (repo.language) {
+                langCount[repo.language] = (langCount[repo.language] || 0) + (repo.size || 1);
+              }
+            }
+            const topLangs = Object.entries(langCount)
+              .sort((a, b) => b[1] - a[1])
+              .slice(0, 6);
+            const totalSize = topLangs.reduce((s, [, v]) => s + v, 0);
+
+            // Gera SVG de Stats
+            const statsSvg = `<svg width="495" height="195" xmlns="http://www.w3.org/2000/svg">
+              <rect width="495" height="195" rx="10" fill="#0d1117"/>
+              <text x="25" y="35" font-family="Segoe UI,sans-serif" font-size="15" font-weight="600" fill="#a78bfa">📊 GitHub Stats — ${user.login}</text>
+              <line x1="25" y1="45" x2="470" y2="45" stroke="#30363d" stroke-width="1"/>
+              <text x="25" y="75"  font-family="Segoe UI,sans-serif" font-size="13" fill="#c9d1d9">⭐ Total Stars</text>
+              <text x="470" y="75"  font-family="Segoe UI,sans-serif" font-size="13" fill="#a78bfa" text-anchor="end">${repos.reduce((s,r)=>s+(r.stargazers_count||0),0)}</text>
+              <text x="25" y="105" font-family="Segoe UI,sans-serif" font-size="13" fill="#c9d1d9">🍴 Total Forks</text>
+              <text x="470" y="105" font-family="Segoe UI,sans-serif" font-size="13" fill="#a78bfa" text-anchor="end">${repos.reduce((s,r)=>s+(r.forks_count||0),0)}</text>
+              <text x="25" y="135" font-family="Segoe UI,sans-serif" font-size="13" fill="#c9d1d9">📁 Public Repos</text>
+              <text x="470" y="135" font-family="Segoe UI,sans-serif" font-size="13" fill="#a78bfa" text-anchor="end">${user.public_repos}</text>
+              <text x="25" y="165" font-family="Segoe UI,sans-serif" font-size="13" fill="#c9d1d9">👥 Followers</text>
+              <text x="470" y="165" font-family="Segoe UI,sans-serif" font-size="13" fill="#a78bfa" text-anchor="end">${user.followers}</text>
+            </svg>`;
+
+            // Gera SVG de Top Languages
+            const barWidth = 440;
+            let bars = '';
+            let labels = '';
+            let xOffset = 0;
+            const colors = ['#a78bfa','#7c3aed','#6d28d9','#5b21b6','#4c1d95','#3b0764'];
+            topLangs.forEach(([lang, size], i) => {
+              const pct = size / totalSize;
+              const w = Math.round(pct * barWidth);
+              bars += `<rect x="${25 + xOffset}" y="80" width="${w}" height="10" rx="3" fill="${colors[i]}"/>`;
+              labels += `<circle cx="35" cy="${125 + i * 22}" r="5" fill="${colors[i]}"/>
+                <text x="47" y="${130 + i * 22}" font-family="Segoe UI,sans-serif" font-size="12" fill="#c9d1d9">${lang}</text>
+                <text x="470" y="${130 + i * 22}" font-family="Segoe UI,sans-serif" font-size="12" fill="#a78bfa" text-anchor="end">${(pct*100).toFixed(1)}%</text>`;
+              xOffset += w;
+            });
+
+            const langSvg = `<svg width="495" height="${125 + topLangs.length * 22 + 10}" xmlns="http://www.w3.org/2000/svg">
+              <rect width="495" height="${125 + topLangs.length * 22 + 10}" rx="10" fill="#0d1117"/>
+              <text x="25" y="35" font-family="Segoe UI,sans-serif" font-size="15" font-weight="600" fill="#a78bfa">💻 Top Languages</text>
+              <line x1="25" y1="45" x2="470" y2="45" stroke="#30363d" stroke-width="1"/>
+              ${bars}
+              ${labels}
+            </svg>`;
+
+            fs.mkdirSync('assets', { recursive: true });
+            fs.writeFileSync('assets/stats.svg', statsSvg);
+            fs.writeFileSync('assets/langs.svg', langSvg);
+            console.log('Cards gerados com sucesso!');
+
+      - name: Commit cards
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/stats.svg assets/langs.svg
+          git diff --staged --quiet || git commit -m "chore: update github stats cards [skip ci]"
+          git push
