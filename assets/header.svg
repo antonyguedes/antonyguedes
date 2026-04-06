@@ -1,0 +1,66 @@
+<svg width="100%" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#0f0c29"/>
+      <stop offset="50%"  stop-color="#302b63"/>
+      <stop offset="100%" stop-color="#24243e"/>
+    </linearGradient>
+
+    <!-- Wave clip -->
+    <clipPath id="waveClip">
+      <rect width="900" height="200"/>
+    </clipPath>
+
+    <!-- Fade-in animation -->
+    <style>
+      .title {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-size: 42px;
+        font-weight: 700;
+        fill: #ffffff;
+        opacity: 0;
+        animation: fadeIn 1.2s ease forwards 0.3s;
+      }
+      .desc {
+        font-family: 'Segoe UI', Arial, sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        fill: #a78bfa;
+        opacity: 0;
+        animation: fadeIn 1.2s ease forwards 0.8s;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .wave1 {
+        animation: waveMove 8s ease-in-out infinite alternate;
+      }
+      .wave2 {
+        animation: waveMove 10s ease-in-out infinite alternate-reverse;
+      }
+      @keyframes waveMove {
+        0%   { d: path("M0,160 C150,130 300,180 450,155 C600,130 750,170 900,150 L900,200 L0,200 Z"); }
+        100% { d: path("M0,155 C150,175 300,135 450,160 C600,185 750,140 900,165 L900,200 L0,200 Z"); }
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="200" fill="url(#bgGrad)"/>
+
+  <!-- Decorative waves at bottom -->
+  <path class="wave1"
+    d="M0,160 C150,130 300,180 450,155 C600,130 750,170 900,150 L900,200 L0,200 Z"
+    fill="rgba(167,139,250,0.08)"/>
+  <path class="wave2"
+    d="M0,170 C200,145 400,185 600,160 C750,142 850,175 900,165 L900,200 L0,200 Z"
+    fill="rgba(167,139,250,0.05)"/>
+
+  <!-- Title text -->
+  <text x="50%" y="90" text-anchor="middle" class="title">Full Stack Developer</text>
+
+  <!-- Desc text -->
+  <text x="50%" y="130" text-anchor="middle" class="desc">Web | Mobile | DLT | Data Mining</text>
+</svg>
