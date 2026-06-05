@@ -60,7 +60,7 @@ const developer = {
 
 ### ⚙️ Backend
 <p>
-  <img src="https://skillicons.dev/icons?i=nodejs,bun,elysia,nestjs,fastify,django,flask,dioxus,rocket,rails,laravel&theme=dark" />
+  <img src="https://skillicons.dev/icons?i=nodejs,bun,elysia,nestjs,flask,rocket,rails,laravel&theme=dark" />
 </p>
 
 ### 🧰 Tools & Platforms
