@@ -9,9 +9,10 @@
 <!-- PROFILE VIEWS & SOCIAL BADGES -->
 ![Profile Views](https://komarev.com/ghpvc/?username=antonyguedes&color=7c3aed&style=flat-square&label=Profile+Views)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/antonyguedes)
+<!--
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://instagram.com/antony_guedess)
 [![Portfolio](https://img.shields.io/badge/Portfolio-7c3aed?style=flat-square&logo=vercel&logoColor=white)](https://YOUR_PORTFOLIO)
-
+-->
 </div>
 
 ---
