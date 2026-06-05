@@ -50,17 +50,17 @@ const developer = {
 
 ### 💻 Languages
 <p>
-  <img src="https://skillicons.dev/icons?i=ts,js,python,rust,go,ruby,c,cpp,cs,php,elixir,kotlin&theme=dark" />
+  <img src="https://skillicons.dev/icons?i=go,js,ts,rust,c,cpp,ruby,python&theme=dark" />
 </p>
 
 ### 🌐 Frontend
 <p>
-  <img src="https://skillicons.dev/icons?i=html,css,react,next,astro,htmx,hotwire&theme=dark" />
+  <img src="https://skillicons.dev/icons?i=html,css,react,next,angular,astro,htmx&theme=dark" />
 </p>
 
 ### ⚙️ Backend
 <p>
-  <img src="https://skillicons.dev/icons?i=nodejs,bun,elysia,nestjs,fastify,django,flask,dioxus,rocket,rails,laravel,phoenix,&theme=dark" />
+  <img src="https://skillicons.dev/icons?i=nodejs,bun,elysia,nestjs,fastify,django,flask,dioxus,rocket,rails,laravel&theme=dark" />
 </p>
 
 ### 🧰 Tools & Platforms
