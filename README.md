@@ -26,7 +26,7 @@ const developer = {
   formation:  "UFSJ": "Univesidade Federal de São João del-rei",
   specialty:  "Hyperledger Tech",
   stack:      ["Web", "Mobile", "DAppss", "Desktop Applications", "UI/UX","Architecture Modeling"],
-  currentlyOn: "Freelance - Building Useless Open Source Projects",
+  currentlyOn: "Web3 & IA Software Developer in Aura Kairos Emet - The 1st Veracity Oracle",
   funFact:    "I think in chains — blockchain chains 😄",
 };
 ```
