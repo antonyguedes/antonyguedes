@@ -8,29 +8,32 @@ import { dirname } from 'node:path';
 const fontData = (file) =>
   readFileSync(new URL(`./fonts/${file}`, import.meta.url)).toString('base64');
 
-// Moonlit crystal-forest palette, sampled from a Macalania reference:
-// sapphire blues, pale moonlight and warm lantern-like pyreflies.
+// Moonlit crystal-forest palette, sampled from Macalania reference art:
+// petrol blues and teals, cyan crystals, violet nebula and warm golden orbs.
 export const C = {
-  deep: '#020d1f',
-  night: '#051d32',
-  panel: '#08305a',
-  royal: '#043b88',
-  sapphire: '#135a9a',
-  winTop: '#0f4f95',
-  winBot: '#062347',
-  silver: '#c0d2cb',
-  ice: '#5cb8f0',
-  aqua: '#4eacc8',
-  frost: '#b9d8f0',
-  snow: '#f4f8ff',
-  azure: '#1b98e5',
-  lilac: '#7fa8ff',
-  bloom: '#ffd27a',
-  gold: '#ffe6a8',
-  moon: '#ece8d6',
+  deep: '#050f1a',
+  night: '#071b2a',
+  panel: '#0b3251',
+  royal: '#0c3e83',
+  sapphire: '#1b5c90',
+  teal: '#164c68',
+  winTop: '#14507a',
+  winBot: '#071b2a',
+  silver: '#c8d7c6',
+  ice: '#7cc8ec',
+  aqua: '#48a0bc',
+  frost: '#a1e0f9',
+  snow: '#eaf0ef',
+  azure: '#2f8dac',
+  lilac: '#8b9be0',
+  violet: '#6073c3',
+  leaf: '#8fe3cf',
+  bloom: '#ffcf6b',
+  gold: '#ffe7a3',
+  moon: '#eaf0ef',
   text: '#e3eefa',
-  muted: '#8fa9c4',
-  line: '#194a6d',
+  muted: '#8fa9b8',
+  line: '#164c68',
 };
 
 // JetBrains Mono advance width is exactly 600/1000 em.
@@ -97,7 +100,7 @@ export const sparkle = (s) =>
   `M0 ${-s} Q0 0 ${s} 0 Q0 0 0 ${s} Q0 0 ${-s} 0 Q0 0 0 ${-s}Z`;
 
 // Mostly cool sparkles, with the occasional warm lantern glow.
-export const PYRE_COLORS = [C.ice, C.azure, C.frost, C.snow, C.ice, C.bloom];
+export const PYRE_COLORS = [C.ice, C.aqua, C.frost, C.snow, C.ice, C.bloom];
 
 // Halo gradients used by pyreflies(); one per palette color.
 export const pyreflyDefs = (colors = PYRE_COLORS) =>
