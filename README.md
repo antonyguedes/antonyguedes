@@ -1,105 +1,95 @@
 <div align="center">
 
 <!-- ANIMATED HEADER -->
-<img width="100%" src="./assets/header.svg" />
+<img width="100%" src="./assets/header.svg" alt="Antonio Guedes — Full Stack · Web3 · DLT · AI" />
 
 <!-- TYPING ANIMATION -->
-<img src="./assets/typing.svg" alt="Typing SVG" />
+<img src="./assets/typing.svg" alt="Building Galaxies from Scratch · Antonio Guedes · I'm going to become a Software Architect · That's my Coding Way" />
 
 <!-- PROFILE VIEWS & SOCIAL BADGES -->
-![Profile Views](https://komarev.com/ghpvc/?username=antonyguedes&color=7c3aed&style=flat-square&label=Profile+Views)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://linkedin.com/in/antonyguedes)
-[![Portfolio](https://img.shields.io/badge/Portfolio-7c3aed?style=flat-square&logo=vercel&logoColor=white)](https://devguedes.vercel.app)
-<!--
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://instagram.com/antony_guedess)
--->
+<p>
+  <img src="https://komarev.com/ghpvc/?username=antonyguedes&color=7c3aed&style=for-the-badge&label=PROFILE+VIEWS" alt="Profile views" />
+  <a href="https://linkedin.com/in/antonyguedes"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
+  <a href="https://devguedes.vercel.app"><img src="https://img.shields.io/badge/Portfolio-0d1117?style=for-the-badge&logo=vercel&logoColor=22d3ee" alt="Portfolio" /></a>
+  <!--
+  <a href="https://instagram.com/antony_guedess"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" /></a>
+  -->
+</p>
+
 </div>
 
----
+<!-- ─────────────── ABOUT ─────────────── -->
+<img width="100%" src="./assets/sections/about.svg" alt="01 — About me" />
 
-## 👨‍💻 About Me
+<div align="center">
+  <img width="100%" src="./assets/terminal.svg" alt="const developer = { name: 'Antonio Guedes', role: ['Computer Scientist', 'Software Engineer', 'Full Stack Dev'], formation: 'UFSJ — Universidade Federal de São João del-Rei', specialty: 'Hyperledger Tech', currentlyOn: 'Web3 & AI Dev @ Aura Kairos Emet — The 1st Veracity Oracle' }" />
+</div>
 
-```ts
-const developer = {
-  name:       "Antonio Guedes",
-  role:       ["Computer Scientist", "Software Engineer", "Full Stack Dev"],
-  formation:  "UFSJ": "Univesidade Federal de São João del-rei",
-  specialty:  "Hyperledger Tech",
-  stack:      ["Web", "Mobile", "DAppss", "Desktop Applications", "UI/UX","Architecture Modeling"],
-  currentlyOn: "Web3 & IA Software Developer in Aura Kairos Emet - The 1st Veracity Oracle",
-  funFact:    "I think in chains — blockchain chains 😄",
-};
-```
----
+<!-- ─────────────── STACK ─────────────── -->
+<img width="100%" src="./assets/sections/stack.svg" alt="02 — Tech stack" />
 
-## 🛠️ Tech Stack
+<div align="center">
 
-### 🪅 Hyperledger Stack
+#### `▸ hyperledger`
 
 [![Hyperledger Fabric](https://img.shields.io/badge/Hyperledger_Fabric-2800Ff?style=for-the-badge&logo=hyperledger&logoColor=white)](https://hyperledger-fabric.readthedocs.io)
 [![Hyperledger Besu](https://img.shields.io/badge/Hyperledger_Besu-00838F?style=for-the-badge&logo=hyperledger&logoColor=white)](https://besu.hyperledger.org)
 [![Hyperledger Aries](https://img.shields.io/badge/Hyperledger_Aries-CF1B36?style=for-the-badge&logo=hyperledger&logoColor=white)](https://aries.hyperledger.org)
 [![Hyperledger FireFly](https://img.shields.io/badge/Hyperledger_FireFly-6D28D9?style=for-the-badge&logo=hyperledger&logoColor=white)](https://hyperledger.github.io/firefly)
 
-### ⛓️ Blockchain
-<p>
-  <img src="https://img.shields.io/badge/Ethereum-3C3C3D?style=for-the-badge&logo=ethereum&logoColor=white" />
-  <img src="https://img.shields.io/badge/Solidity-E6E3EC?style=for-the-badge&logo=solidity&logoColor=2B247C" />
-  <img src="https://img.shields.io/badge/Sui-298DFF?style=for-the-badge&logo=sui&logoColor=white" />
-</p>
+#### `▸ blockchain`
 
-### 💻 Languages
-<p>
-  <img src="https://skillicons.dev/icons?i=go,js,ts,rust,c,cpp,ruby,python&theme=dark" />
-</p>
+<img src="https://img.shields.io/badge/Ethereum-3C3C3D?style=for-the-badge&logo=ethereum&logoColor=white" alt="Ethereum" />
+<img src="https://img.shields.io/badge/Solidity-E6E3EC?style=for-the-badge&logo=solidity&logoColor=2B247C" alt="Solidity" />
+<img src="https://img.shields.io/badge/Sui-298DFF?style=for-the-badge&logo=sui&logoColor=white" alt="Sui" />
 
-### 🌐 Frontend
-<p>
-  <img src="https://skillicons.dev/icons?i=html,css,react,next,angular,astro,htmx&theme=dark" />
-</p>
+#### `▸ languages`
 
-### ⚙️ Backend
-<p>
-  <img src="https://skillicons.dev/icons?i=nodejs,bun,elysia,nestjs,flask,rocket,rails,laravel&theme=dark" />
-</p>
+<img src="https://skillicons.dev/icons?i=go,js,ts,rust,c,cpp,ruby,python&theme=dark" alt="Go, JavaScript, TypeScript, Rust, C, C++, Ruby, Python" />
 
-### 🧰 Tools & Platforms
-<p>
-  <img src="https://skillicons.dev/icons?i=git,linux,docker,figma,jenkins,insomnia,&theme=dark" />
-</p>
+#### `▸ frontend`
 
----
+<img src="https://skillicons.dev/icons?i=html,css,react,next,angular,astro,htmx&theme=dark" alt="HTML, CSS, React, Next.js, Angular, Astro, htmx" />
 
-## 📊 GitHub Stats
+#### `▸ backend`
+
+<img src="https://skillicons.dev/icons?i=nodejs,bun,elysia,nestjs,flask,rocket,rails,laravel&theme=dark" alt="Node.js, Bun, Elysia, NestJS, Flask, Rocket, Rails, Laravel" />
+
+#### `▸ tools & platforms`
+
+<img src="https://skillicons.dev/icons?i=git,linux,docker,figma,jenkins,insomnia&theme=dark" alt="Git, Linux, Docker, Figma, Jenkins, Insomnia" />
+
+</div>
+
+<!-- ─────────────── STATS ─────────────── -->
+<img width="100%" src="./assets/sections/stats.svg" alt="03 — GitHub stats" />
 
 <div align="center">
 
-<img width="49%" src="./assets/stats.svg" />
-<img width="49%" src="https://github-readme-streak-stats.herokuapp.com/?user=antonyguedes&theme=tokyonight&hide_border=true&background=0d1117&ring=a78bfa&fire=a78bfa&currStreakLabel=a78bfa" />
+<img width="49%" src="./assets/stats.svg" alt="GitHub stats" />
+<img width="49%" src="https://streak-stats.demolab.com/?user=antonyguedes&theme=tokyonight&hide_border=true&background=0d1117&ring=22d3ee&fire=f472b6&currStreakLabel=a78bfa&sideLabels=a78bfa&dates=8b949e&stroke=30363d" alt="GitHub streak" />
 
-<br/>
-
-<img width="49%" src="./assets/langs.svg" />
-<img width="49%" src="https://github-readme-activity-graph.vercel.app/graph?username=antonyguedes&theme=tokyo-night&hide_border=true&bg_color=0d1117&color=a78bfa&line=7c3aed&point=ffffff" />
+<img width="49%" src="./assets/langs.svg" alt="Top languages" />
+<img width="49%" src="https://github-readme-activity-graph.vercel.app/graph?username=antonyguedes&theme=tokyo-night&hide_border=true&bg_color=0d1117&color=a78bfa&line=22d3ee&point=f472b6&area=true&area_color=7c3aed" alt="Contribution activity graph" />
 
 </div>
 
----
-
-## 🏆 GitHub Trophies
+<!-- ─────────────── TROPHIES ─────────────── -->
+<img width="100%" src="./assets/sections/trophies.svg" alt="04 — Trophies" />
 
 <div align="center">
-
-<img src="./assets/trophies.svg" />
-
-
+  <img width="100%" src="./assets/trophies.svg" alt="GitHub trophies" />
 </div>
 
+<!-- ─────────────── CONTRIBUTIONS ─────────────── -->
+<img width="100%" src="./assets/sections/contrib.svg" alt="05 — Contributions" />
 
-
-
-<!-- FOOTER WAVE -->
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:24243e,50:302b63,100:0f0c29&height=120&section=footer" />
-
-
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/antonyguedes/antonyguedes/output/github-snake-dark.svg" />
+    <img width="100%" alt="Contribution snake" src="https://raw.githubusercontent.com/antonyguedes/antonyguedes/output/github-snake.svg" />
+  </picture>
 </div>
+
+<!-- FOOTER -->
+<img width="100%" src="./assets/footer.svg" alt="Thanks for visiting" />
