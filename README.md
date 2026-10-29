@@ -8,9 +8,9 @@
 
 <!-- PROFILE VIEWS & SOCIAL BADGES -->
 <p>
-  <img src="https://komarev.com/ghpvc/?username=antonyguedes&color=7c3aed&style=for-the-badge&label=PROFILE+VIEWS" alt="Profile views" />
+  <img src="https://komarev.com/ghpvc/?username=antonyguedes&color=38bdf8&style=for-the-badge&label=PROFILE+VIEWS" alt="Profile views" />
   <a href="https://linkedin.com/in/antonyguedes"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
-  <a href="https://devguedes.vercel.app"><img src="https://img.shields.io/badge/Portfolio-0d1117?style=for-the-badge&logo=vercel&logoColor=22d3ee" alt="Portfolio" /></a>
+  <a href="https://devguedes.vercel.app"><img src="https://img.shields.io/badge/Portfolio-0b1a40?style=for-the-badge&logo=vercel&logoColor=67e8f9" alt="Portfolio" /></a>
   <!--
   <a href="https://instagram.com/antony_guedess"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" /></a>
   -->
@@ -67,10 +67,10 @@
 <div align="center">
 
 <img width="49%" src="./assets/stats.svg" alt="GitHub stats" />
-<img width="49%" src="https://streak-stats.demolab.com/?user=antonyguedes&theme=tokyonight&hide_border=true&background=0d1117&ring=22d3ee&fire=f472b6&currStreakLabel=a78bfa&sideLabels=a78bfa&dates=8b949e&stroke=30363d" alt="GitHub streak" />
+<img width="49%" src="https://streak-stats.demolab.com/?user=antonyguedes&hide_border=false&border=cbd5e1&border_radius=10&background=1B3166&ring=67e8f9&fire=f0abfc&currStreakNum=f0f9ff&currStreakLabel=67e8f9&sideNums=f0f9ff&sideLabels=bae6fd&dates=94a3b8&stroke=cbd5e1" alt="GitHub streak" />
 
 <img width="49%" src="./assets/langs.svg" alt="Top languages" />
-<img width="49%" src="https://github-readme-activity-graph.vercel.app/graph?username=antonyguedes&theme=tokyo-night&hide_border=true&bg_color=0d1117&color=a78bfa&line=22d3ee&point=f472b6&area=true&area_color=7c3aed" alt="Contribution activity graph" />
+<img width="49%" src="./assets/activity.svg" alt="Contribution activity, last 31 days" />
 
 </div>
 
