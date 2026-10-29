@@ -8,9 +8,9 @@
 
 <!-- PROFILE VIEWS & SOCIAL BADGES -->
 <p>
-  <img src="https://komarev.com/ghpvc/?username=antonyguedes&color=38bdf8&style=for-the-badge&label=PROFILE+VIEWS" alt="Profile views" />
+  <img src="https://komarev.com/ghpvc/?username=antonyguedes&color=1b98e5&style=for-the-badge&label=PROFILE+VIEWS" alt="Profile views" />
   <a href="https://linkedin.com/in/antonyguedes"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
-  <a href="https://devguedes.vercel.app"><img src="https://img.shields.io/badge/Portfolio-0b1a40?style=for-the-badge&logo=vercel&logoColor=67e8f9" alt="Portfolio" /></a>
+  <a href="https://devguedes.vercel.app"><img src="https://img.shields.io/badge/Portfolio-08305a?style=for-the-badge&logo=vercel&logoColor=ffd27a" alt="Portfolio" /></a>
   <!--
   <a href="https://instagram.com/antony_guedess"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" /></a>
   -->
@@ -67,7 +67,7 @@
 <div align="center">
 
 <img width="49%" src="./assets/stats.svg" alt="GitHub stats" />
-<img width="49%" src="https://streak-stats.demolab.com/?user=antonyguedes&hide_border=false&border=cbd5e1&border_radius=10&background=1B3166&ring=67e8f9&fire=f0abfc&currStreakNum=f0f9ff&currStreakLabel=67e8f9&sideNums=f0f9ff&sideLabels=bae6fd&dates=94a3b8&stroke=cbd5e1" alt="GitHub streak" />
+<img width="49%" src="https://streak-stats.demolab.com/?user=antonyguedes&hide_border=false&border=c0d2cb&border_radius=10&background=0A3A70&ring=5cb8f0&fire=ffd27a&currStreakNum=f4f8ff&currStreakLabel=ffe6a8&sideNums=f4f8ff&sideLabels=b9d8f0&dates=8fa9c4&stroke=c0d2cb" alt="GitHub streak" />
 
 <img width="49%" src="./assets/langs.svg" alt="Top languages" />
 <img width="49%" src="./assets/activity.svg" alt="Contribution activity, last 31 days" />

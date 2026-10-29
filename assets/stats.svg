@@ -8,61 +8,61 @@
 .in{opacity:0;animation:in .7s ease-out forwards}
 @keyframes in{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:none}}
 </style>
-<linearGradient id="win" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0" stop-color="#2b4f9e"/><stop offset="1" stop-color="#0b1a40"/></linearGradient>
+<linearGradient id="win" x1="0" y1="0" x2="0.35" y2="1"><stop offset="0" stop-color="#0f4f95"/><stop offset="1" stop-color="#062347"/></linearGradient>
 <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.5" stop-color="#fff" stop-opacity="0.1"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
-<radialGradient id="pf0"><stop offset="0" stop-color="#67e8f9" stop-opacity="0.55"/><stop offset="1" stop-color="#67e8f9" stop-opacity="0"/></radialGradient><radialGradient id="pf1"><stop offset="0" stop-color="#5eead4" stop-opacity="0.55"/><stop offset="1" stop-color="#5eead4" stop-opacity="0"/></radialGradient><radialGradient id="pf2"><stop offset="0" stop-color="#bae6fd" stop-opacity="0.55"/><stop offset="1" stop-color="#bae6fd" stop-opacity="0"/></radialGradient><radialGradient id="pf3"><stop offset="0" stop-color="#f0f9ff" stop-opacity="0.55"/><stop offset="1" stop-color="#f0f9ff" stop-opacity="0"/></radialGradient><radialGradient id="pf4"><stop offset="0" stop-color="#a5b4fc" stop-opacity="0.55"/><stop offset="1" stop-color="#a5b4fc" stop-opacity="0"/></radialGradient><radialGradient id="pf5"><stop offset="0" stop-color="#f0abfc" stop-opacity="0.55"/><stop offset="1" stop-color="#f0abfc" stop-opacity="0"/></radialGradient>
+<radialGradient id="pf0"><stop offset="0" stop-color="#5cb8f0" stop-opacity="0.55"/><stop offset="1" stop-color="#5cb8f0" stop-opacity="0"/></radialGradient><radialGradient id="pf1"><stop offset="0" stop-color="#1b98e5" stop-opacity="0.55"/><stop offset="1" stop-color="#1b98e5" stop-opacity="0"/></radialGradient><radialGradient id="pf2"><stop offset="0" stop-color="#b9d8f0" stop-opacity="0.55"/><stop offset="1" stop-color="#b9d8f0" stop-opacity="0"/></radialGradient><radialGradient id="pf3"><stop offset="0" stop-color="#f4f8ff" stop-opacity="0.55"/><stop offset="1" stop-color="#f4f8ff" stop-opacity="0"/></radialGradient><radialGradient id="pf4"><stop offset="0" stop-color="#5cb8f0" stop-opacity="0.55"/><stop offset="1" stop-color="#5cb8f0" stop-opacity="0"/></radialGradient><radialGradient id="pf5"><stop offset="0" stop-color="#ffd27a" stop-opacity="0.55"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
 <filter id="g" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="g6" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-<radialGradient id="orb" cx="0.36" cy="0.3" r="0.75"><stop offset="0" stop-color="#fff"/><stop offset="0.25" stop-color="#38bdf8"/><stop offset="1" stop-color="#0b1a40"/></radialGradient><linearGradient id="ring" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5eead4"/><stop offset="1" stop-color="#f0abfc"/></linearGradient>
+<radialGradient id="orb" cx="0.36" cy="0.3" r="0.75"><stop offset="0" stop-color="#fff"/><stop offset="0.25" stop-color="#1b98e5"/><stop offset="1" stop-color="#062347"/></radialGradient><linearGradient id="ring" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4eacc8"/><stop offset="1" stop-color="#ffd27a"/></linearGradient>
 </defs>
 <rect x="1" y="1" width="493" height="193" rx="10" fill="url(#win)"/>
-<rect x="1" y="1" width="493" height="193" rx="10" fill="none" stroke="#cbd5e1" stroke-width="1.5"/>
+<rect x="1" y="1" width="493" height="193" rx="10" fill="none" stroke="#c0d2cb" stroke-width="1.5"/>
 <rect x="4.5" y="4.5" width="486" height="186" rx="7" fill="none" stroke="#fff" stroke-opacity="0.16"/>
-<g opacity="0.55"><g opacity="0"><circle r="6" fill="url(#pf4)"/><circle r="1.5" fill="#a5b4fc"/><circle r="0.68" fill="#fff"/><animateMotion path="M426.72 189 C429.41 133.23 442.53 77.46 419.91 20" dur="10.76s" begin="-3.83s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0.5;1;0" keyTimes="0;0.15;0.5;0.8;1" dur="10.76s" begin="-3.83s" repeatCount="indefinite"/></g><g opacity="0"><circle r="5.36" fill="url(#pf3)"/><circle r="1.34" fill="#f0f9ff"/><circle r="0.6" fill="#fff"/><animateMotion path="M340.1 189 C337 133.23 332.24 77.46 337.29 20" dur="8.36s" begin="-0.71s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0.5;1;0" keyTimes="0;0.15;0.5;0.8;1" dur="8.36s" begin="-0.71s" repeatCount="indefinite"/></g><g opacity="0"><circle r="5.4" fill="url(#pf0)"/><circle r="1.35" fill="#67e8f9"/><circle r="0.61" fill="#fff"/><animateMotion path="M58.58 189 C72.12 133.23 70.54 77.46 55.84 20" dur="11.47s" begin="-5.55s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0.5;1;0" keyTimes="0;0.15;0.5;0.8;1" dur="11.47s" begin="-5.55s" repeatCount="indefinite"/></g><g opacity="0"><circle r="3.6" fill="url(#pf5)"/><circle r="0.9" fill="#f0abfc"/><circle r="0.41" fill="#fff"/><animateMotion path="M252.95 189 C250.67 133.23 267.53 77.46 262.25 20" dur="11.38s" begin="-11.14s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0.5;1;0" keyTimes="0;0.15;0.5;0.8;1" dur="11.38s" begin="-11.14s" repeatCount="indefinite"/></g><g opacity="0"><circle r="5.72" fill="url(#pf4)"/><circle r="1.43" fill="#a5b4fc"/><circle r="0.64" fill="#fff"/><animateMotion path="M391.14 189 C404.72 133.23 393.67 77.46 403.67 20" dur="11.38s" begin="-9.27s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0.5;1;0" keyTimes="0;0.15;0.5;0.8;1" dur="11.38s" begin="-9.27s" repeatCount="indefinite"/></g><g opacity="0"><circle r="3.6" fill="url(#pf2)"/><circle r="0.9" fill="#bae6fd"/><circle r="0.41" fill="#fff"/><animateMotion path="M240.84 189 C260.78 133.23 235.61 77.46 224.88 20" dur="11.53s" begin="-6.24s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0.5;1;0" keyTimes="0;0.15;0.5;0.8;1" dur="11.53s" begin="-6.24s" repeatCount="indefinite"/></g><g opacity="0"><circle r="5.32" fill="url(#pf1)"/><circle r="1.33" fill="#5eead4"/><circle r="0.6" fill="#fff"/><animateMotion path="M35.51 189 C51.29 133.23 51.85 77.46 22.16 20" dur="10.09s" begin="-10.74s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0.5;1;0" keyTimes="0;0.15;0.5;0.8;1" dur="10.09s" begin="-10.74s" repeatCount="indefinite"/></g><g opacity="0"><circle r="4.72" fill="url(#pf5)"/><circle r="1.18" fill="#f0abfc"/><circle r="0.53" fill="#fff"/><animateMotion path="M263.23 189 C263.43 133.23 274.65 77.46 255.72 20" dur="10.13s" begin="-1.27s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0.5;1;0" keyTimes="0;0.15;0.5;0.8;1" dur="10.13s" begin="-1.27s" repeatCount="indefinite"/></g></g>
-<path transform="translate(26 31)" d="M0 -6L4 0L0 6L-4 0Z" fill="#67e8f9" filter="url(#g)"/>
+<g opacity="0.55"><g opacity="0"><circle r="6" fill="url(#pf4)"/><circle r="1.5" fill="#5cb8f0"/><circle r="0.68" fill="#fff"/><animateMotion path="M426.72 189 C429.41 133.23 442.53 77.46 419.91 20" dur="10.76s" begin="-3.83s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0.5;1;0" keyTimes="0;0.15;0.5;0.8;1" dur="10.76s" begin="-3.83s" repeatCount="indefinite"/></g><g opacity="0"><circle r="5.36" fill="url(#pf3)"/><circle r="1.34" fill="#f4f8ff"/><circle r="0.6" fill="#fff"/><animateMotion path="M340.1 189 C337 133.23 332.24 77.46 337.29 20" dur="8.36s" begin="-0.71s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0.5;1;0" keyTimes="0;0.15;0.5;0.8;1" dur="8.36s" begin="-0.71s" repeatCount="indefinite"/></g><g opacity="0"><circle r="5.4" fill="url(#pf0)"/><circle r="1.35" fill="#5cb8f0"/><circle r="0.61" fill="#fff"/><animateMotion path="M58.58 189 C72.12 133.23 70.54 77.46 55.84 20" dur="11.47s" begin="-5.55s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0.5;1;0" keyTimes="0;0.15;0.5;0.8;1" dur="11.47s" begin="-5.55s" repeatCount="indefinite"/></g><g opacity="0"><circle r="3.6" fill="url(#pf5)"/><circle r="0.9" fill="#ffd27a"/><circle r="0.41" fill="#fff"/><animateMotion path="M252.95 189 C250.67 133.23 267.53 77.46 262.25 20" dur="11.38s" begin="-11.14s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0.5;1;0" keyTimes="0;0.15;0.5;0.8;1" dur="11.38s" begin="-11.14s" repeatCount="indefinite"/></g><g opacity="0"><circle r="5.72" fill="url(#pf4)"/><circle r="1.43" fill="#5cb8f0"/><circle r="0.64" fill="#fff"/><animateMotion path="M391.14 189 C404.72 133.23 393.67 77.46 403.67 20" dur="11.38s" begin="-9.27s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0.5;1;0" keyTimes="0;0.15;0.5;0.8;1" dur="11.38s" begin="-9.27s" repeatCount="indefinite"/></g><g opacity="0"><circle r="3.6" fill="url(#pf2)"/><circle r="0.9" fill="#b9d8f0"/><circle r="0.41" fill="#fff"/><animateMotion path="M240.84 189 C260.78 133.23 235.61 77.46 224.88 20" dur="11.53s" begin="-6.24s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0.5;1;0" keyTimes="0;0.15;0.5;0.8;1" dur="11.53s" begin="-6.24s" repeatCount="indefinite"/></g><g opacity="0"><circle r="5.32" fill="url(#pf1)"/><circle r="1.33" fill="#1b98e5"/><circle r="0.6" fill="#fff"/><animateMotion path="M35.51 189 C51.29 133.23 51.85 77.46 22.16 20" dur="10.09s" begin="-10.74s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0.5;1;0" keyTimes="0;0.15;0.5;0.8;1" dur="10.09s" begin="-10.74s" repeatCount="indefinite"/></g><g opacity="0"><circle r="4.72" fill="url(#pf5)"/><circle r="1.18" fill="#ffd27a"/><circle r="0.53" fill="#fff"/><animateMotion path="M263.23 189 C263.43 133.23 274.65 77.46 255.72 20" dur="10.13s" begin="-1.27s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;1;0.5;1;0" keyTimes="0;0.15;0.5;0.8;1" dur="10.13s" begin="-1.27s" repeatCount="indefinite"/></g></g>
+<path transform="translate(26 31)" d="M0 -6L4 0L0 6L-4 0Z" fill="#5cb8f0" filter="url(#g)"/>
 <text x="38" y="36" class="h" fill="#fff" filter="url(#g)">GITHUB STATS</text>
-<line x1="20" y1="50" x2="475" y2="50" stroke="#cbd5e1" stroke-opacity="0.3"/>
+<line x1="20" y1="50" x2="475" y2="50" stroke="#c0d2cb" stroke-opacity="0.3"/>
 <g class="in" style="animation-delay:0.2s">
-  <path transform="translate(29 72)" d="M0 -6L4 0L0 6L-4 0Z" fill="#fde68a" filter="url(#g)"/>
-  <text x="44" y="76" class="m" fill="#e0f2fe">Total Stars</text>
-  <line x1="127.2" y1="72" x2="250" y2="72" stroke="#cbd5e1" stroke-opacity="0.35" stroke-dasharray="2 4"/>
-  <text x="270" y="76" text-anchor="end" class="v" font-size="16" fill="#fde68a" filter="url(#g)">2</text>
+  <path transform="translate(29 72)" d="M0 -6L4 0L0 6L-4 0Z" fill="#ffe6a8" filter="url(#g)"/>
+  <text x="44" y="76" class="m" fill="#e3eefa">Total Stars</text>
+  <line x1="127.2" y1="72" x2="250" y2="72" stroke="#c0d2cb" stroke-opacity="0.35" stroke-dasharray="2 4"/>
+  <text x="270" y="76" text-anchor="end" class="v" font-size="16" fill="#ffe6a8" filter="url(#g)">2</text>
 </g>
 <g class="in" style="animation-delay:0.35s">
-  <path transform="translate(29 97)" d="M0 -6L4 0L0 6L-4 0Z" fill="#67e8f9" filter="url(#g)"/>
-  <text x="44" y="101" class="m" fill="#e0f2fe">Total Forks</text>
-  <line x1="127.2" y1="97" x2="250" y2="97" stroke="#cbd5e1" stroke-opacity="0.35" stroke-dasharray="2 4"/>
-  <text x="270" y="101" text-anchor="end" class="v" font-size="16" fill="#67e8f9" filter="url(#g)">0</text>
+  <path transform="translate(29 97)" d="M0 -6L4 0L0 6L-4 0Z" fill="#5cb8f0" filter="url(#g)"/>
+  <text x="44" y="101" class="m" fill="#e3eefa">Total Forks</text>
+  <line x1="127.2" y1="97" x2="250" y2="97" stroke="#c0d2cb" stroke-opacity="0.35" stroke-dasharray="2 4"/>
+  <text x="270" y="101" text-anchor="end" class="v" font-size="16" fill="#5cb8f0" filter="url(#g)">0</text>
 </g>
 <g class="in" style="animation-delay:0.5s">
-  <path transform="translate(29 122)" d="M0 -6L4 0L0 6L-4 0Z" fill="#f0abfc" filter="url(#g)"/>
-  <text x="44" y="126" class="m" fill="#e0f2fe">Public Repos</text>
-  <line x1="134.4" y1="122" x2="238" y2="122" stroke="#cbd5e1" stroke-opacity="0.35" stroke-dasharray="2 4"/>
-  <text x="270" y="126" text-anchor="end" class="v" font-size="16" fill="#f0abfc" filter="url(#g)">28</text>
+  <path transform="translate(29 122)" d="M0 -6L4 0L0 6L-4 0Z" fill="#b9d8f0" filter="url(#g)"/>
+  <text x="44" y="126" class="m" fill="#e3eefa">Public Repos</text>
+  <line x1="134.4" y1="122" x2="238" y2="122" stroke="#c0d2cb" stroke-opacity="0.35" stroke-dasharray="2 4"/>
+  <text x="270" y="126" text-anchor="end" class="v" font-size="16" fill="#b9d8f0" filter="url(#g)">28</text>
 </g>
 <g class="in" style="animation-delay:0.65s">
-  <path transform="translate(29 147)" d="M0 -6L4 0L0 6L-4 0Z" fill="#5eead4" filter="url(#g)"/>
-  <text x="44" y="151" class="m" fill="#e0f2fe">Followers</text>
-  <line x1="112.8" y1="147" x2="238" y2="147" stroke="#cbd5e1" stroke-opacity="0.35" stroke-dasharray="2 4"/>
-  <text x="270" y="151" text-anchor="end" class="v" font-size="16" fill="#5eead4" filter="url(#g)">57</text>
+  <path transform="translate(29 147)" d="M0 -6L4 0L0 6L-4 0Z" fill="#4eacc8" filter="url(#g)"/>
+  <text x="44" y="151" class="m" fill="#e3eefa">Followers</text>
+  <line x1="112.8" y1="147" x2="238" y2="147" stroke="#c0d2cb" stroke-opacity="0.35" stroke-dasharray="2 4"/>
+  <text x="270" y="151" text-anchor="end" class="v" font-size="16" fill="#4eacc8" filter="url(#g)">57</text>
 </g>
 <g class="in" style="animation-delay:0.8s">
-  <path transform="translate(29 172)" d="M0 -6L4 0L0 6L-4 0Z" fill="#a5b4fc" filter="url(#g)"/>
-  <text x="44" y="176" class="m" fill="#e0f2fe">Commits</text>
-  <line x1="98.4" y1="172" x2="226" y2="172" stroke="#cbd5e1" stroke-opacity="0.35" stroke-dasharray="2 4"/>
-  <text x="270" y="176" text-anchor="end" class="v" font-size="16" fill="#a5b4fc" filter="url(#g)">210</text>
+  <path transform="translate(29 172)" d="M0 -6L4 0L0 6L-4 0Z" fill="#7fa8ff" filter="url(#g)"/>
+  <text x="44" y="176" class="m" fill="#e3eefa">Commits</text>
+  <line x1="98.4" y1="172" x2="226" y2="172" stroke="#c0d2cb" stroke-opacity="0.35" stroke-dasharray="2 4"/>
+  <text x="270" y="176" text-anchor="end" class="v" font-size="16" fill="#7fa8ff" filter="url(#g)">211</text>
 </g>
-<text x="473" y="36" text-anchor="end" class="m" fill="#bae6fd">// antonyguedes</text>
+<text x="473" y="36" text-anchor="end" class="m" fill="#b9d8f0">// antonyguedes</text>
 <g>
-  <circle cx="395" cy="116" r="59" fill="none" stroke="#bae6fd" stroke-opacity="0.45" stroke-dasharray="1 5">
+  <circle cx="395" cy="116" r="59" fill="none" stroke="#b9d8f0" stroke-opacity="0.45" stroke-dasharray="1 5">
     <animateTransform attributeName="transform" type="rotate" values="0 395 116;360 395 116" dur="24s" repeatCount="indefinite"/>
   </circle>
-  <circle cx="395" cy="116" r="51" fill="none" stroke="#1e3a5f" stroke-width="4"/>
+  <circle cx="395" cy="116" r="51" fill="none" stroke="#194a6d" stroke-width="4"/>
   <circle cx="395" cy="116" r="51" fill="none" stroke="url(#ring)" stroke-width="4" stroke-linecap="round" stroke-dasharray="320.44" stroke-dashoffset="320.44" transform="rotate(-90 395 116)" filter="url(#g)">
     <animate attributeName="stroke-dashoffset" from="320.44" to="219.38" dur="1.8s" begin="0.3s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.2 1" keyTimes="0;1"/>
   </circle>
   <circle cx="395" cy="116" r="44" fill="url(#orb)" filter="url(#g)"><animate attributeName="r" values="44;42;44" dur="4s" repeatCount="indefinite"/></circle>
   <text x="395" y="126" text-anchor="middle" class="v" font-size="30" fill="#fff" filter="url(#g6)">A</text>
-  <text x="395" y="144" text-anchor="middle" class="h" font-size="8" letter-spacing="3" fill="#f0f9ff">RANK</text>
+  <text x="395" y="144" text-anchor="middle" class="h" font-size="8" letter-spacing="3" fill="#f4f8ff">RANK</text>
   <g transform="translate(375 90)"><path d="M0 -7 Q0 0 7 0 Q0 0 0 7 Q0 0 -7 0 Q0 0 0 -7Z" fill="#fff" transform="scale(0)"><animateTransform attributeName="transform" type="scale" values="0;1;0;0" keyTimes="0;0.08;0.16;1" dur="5s" begin="2s" repeatCount="indefinite"/></path></g>
 </g>
 <clipPath id="wclip"><rect x="1" y="1" width="493" height="193" rx="10"/></clipPath>

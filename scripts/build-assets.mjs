@@ -5,65 +5,107 @@ import {
   sparkle, pyreflyDefs, pyreflies, windowDefs, windowFrame, windowSheen,
 } from './lib.mjs';
 
-// Recursive crystal tree: straight faceted branches ending in glowing shards.
-function crystalTree(rand, x, base, height, width, depth = 4) {
-  const branches = [], tips = [];
-  const grow = (x1, y1, angle, len, w, depth) => {
-    const x2 = x1 + Math.cos(angle) * len, y2 = y1 + Math.sin(angle) * len;
-    branches.push(`<line x1="${r2(x1)}" y1="${r2(y1)}" x2="${r2(x2)}" y2="${r2(y2)}" stroke-width="${r2(w)}"/>`);
-    if (depth === 0) {
-      tips.push([r2(x2), r2(y2)]);
-      return;
-    }
-    const kids = rand() > 0.75 ? 3 : 2;
-    for (let k = 0; k < kids; k++) {
-      const spread = (k - (kids - 1) / 2) * (0.45 + rand() * 0.3) + (rand() - 0.5) * 0.2;
-      grow(x2, y2, angle + spread, len * (0.68 + rand() * 0.12), w * 0.62, depth - 1);
-    }
-  };
-  grow(x, base, -Math.PI / 2 + (rand() - 0.5) * 0.15, height * 0.32, width, depth);
-  return { branches, tips };
+// Dense canopy: overlapping blobs with a blue rim light along the silhouette,
+// sprinkled with glitter and a few softly pulsing glows inside.
+function canopy(rand, { x0, x1, top, base, n, specks = 0, glows = 0, shade = ['#05214a', '#062752', '#072c5a'], rim = '#2f86d6' }) {
+  const blobs = [];
+  for (let k = 0; k < n; k++) {
+    const x = x0 + rand() * (x1 - x0), yt = top(x), r = 12 + rand() * 30;
+    const y = Math.min(yt + r * 0.7 + rand() * Math.max(base - yt - r, 0), base + 6);
+    blobs.push([r2(x), r2(y), r2(r)]);
+  }
+  const body = blobs.map(([x, y, r]) => `<circle cx="${x}" cy="${y}" r="${r}" fill="${shade[Math.floor(rand() * shade.length)]}"/>`).join('');
+  const rimL = blobs.map(([x, y, r]) => `<circle cx="${r2(x - 2.5)}" cy="${r2(y - 3.5)}" r="${r}"/>`).join('');
+  const glitter = Array.from({ length: specks }, () => {
+    const [bx, by, br] = blobs[Math.floor(rand() * blobs.length)];
+    const a = rand() * Math.PI * 2, d = rand() * br * 0.9;
+    const c = rand() > 0.85 ? C.silver : rand() > 0.4 ? C.ice : C.azure;
+    const tw = rand() < 0.3
+      ? `<animate attributeName="opacity" values="0.2;1;0.2" dur="${r2(2 + rand() * 4)}s" begin="${r2(-rand() * 6)}s" repeatCount="indefinite"/>`
+      : '';
+    return `<circle cx="${r2(bx + Math.cos(a) * d)}" cy="${r2(by + Math.sin(a) * d)}" r="${r2(0.5 + rand() * 1.1)}" fill="${c}">${tw}</circle>`;
+  }).join('');
+  const inner = Array.from({ length: glows }, () => {
+    const [bx, by, br] = blobs[Math.floor(rand() * blobs.length)];
+    return `<circle cx="${bx}" cy="${by}" r="${r2(br * 0.8)}" fill="${C.azure}" opacity="0.3" filter="url(#g8)"><animate attributeName="opacity" values="0.15;0.45;0.15" dur="${r2(4 + rand() * 4)}s" begin="${r2(-rand() * 8)}s" repeatCount="indefinite"/></circle>`;
+  }).join('');
+  return `<g filter="url(#leafy)"><g fill="${rim}" opacity="0.75">${rimL}</g><g>${body}</g></g><g>${inner}</g><g>${glitter}</g>`;
 }
 
-function forest(rand, specs, { twinkle = 0.35 } = {}) {
-  const branches = [], shards = [];
-  for (const [x, base, h, w, depth] of specs) {
-    const t = crystalTree(rand, x, base, h, w, depth);
-    branches.push(...t.branches);
-    for (const [tx, ty] of t.tips) {
-      const s = r2(2 + rand() * 3);
-      const anim = rand() < twinkle
-        ? `<animate attributeName="opacity" values="0.3;1;0.3" dur="${r2(2 + rand() * 4)}s" begin="${r2(-rand() * 6)}s" repeatCount="indefinite"/>`
-        : '';
-      shards.push(`<path transform="translate(${tx} ${ty})" d="M0 ${-s * 1.8}L${s} 0L0 ${s * 1.8}L${-s} 0Z" fill="${rand() > 0.7 ? C.bloom : rand() > 0.4 ? C.ice : C.snow}">${anim}</path>`);
-    }
-  }
-  return { branches: branches.join(''), shards: shards.join('') };
+// Warm floating lantern-orb with a shimmering reflection on the water below.
+function lantern(rand, x, y, hz, size = 1) {
+  const d = r2(3 + rand() * 3), b = r2(-rand() * 6);
+  const ry = hz + (hz - y);
+  return `<g>
+  <circle cx="${x}" cy="${y}" r="${r2(34 * size)}" fill="url(#lanternHalo)"><animate attributeName="r" values="${r2(30 * size)};${r2(40 * size)};${r2(30 * size)}" dur="${d}s" begin="${b}s" repeatCount="indefinite"/></circle>
+  <circle cx="${x}" cy="${y}" r="${r2(6 * size)}" fill="${C.gold}" filter="url(#g4)"/>
+  <circle cx="${x}" cy="${y}" r="${r2(3 * size)}" fill="#fff"/>
+  <ellipse cx="${x}" cy="${r2(ry)}" rx="${r2(5 * size)}" ry="${r2(18 * size)}" fill="${C.bloom}" opacity="0.35" filter="url(#g4)"><animate attributeName="ry" values="${r2(14 * size)};${r2(24 * size)};${r2(14 * size)}" dur="${d}s" begin="${b}s" repeatCount="indefinite"/></ellipse>
+</g>`;
+}
+
+// Tiny glowing crystals poking out of the water.
+const waterCrystals = (rand, n, x0, x1, y0, y1) => Array.from({ length: n }, () => {
+  const x = r2(x0 + rand() * (x1 - x0)), y = r2(y0 + rand() * (y1 - y0)), h = r2(3 + rand() * 6);
+  return `<path d="M${x} ${y - h}L${r2(x + 1.6)} ${y}L${r2(x - 1.6)} ${y}Z" fill="${rand() > 0.3 ? C.ice : C.frost}" filter="url(#g2)"><animate attributeName="opacity" values="0.35;1;0.35" dur="${r2(2 + rand() * 4)}s" begin="${r2(-rand() * 6)}s" repeatCount="indefinite"/></path>`;
+}).join('');
+
+// Crescent moon with halo and faint earthshine on the dark side.
+const moon = (x, y, r) => `<g transform="translate(${x} ${y})">
+  <circle r="${r * 2.6}" fill="url(#moonHalo)"><animate attributeName="opacity" values="0.8;1;0.8" dur="7s" repeatCount="indefinite"/></circle>
+  <circle r="${r}" fill="${C.moon}" opacity="0.08"/>
+  <g mask="url(#crescent)">
+    <circle r="${r}" fill="url(#moonFace)"/>
+    <circle cx="${-r * 0.35}" cy="${-r * 0.2}" r="${r * 0.16}" fill="#8e8c80" opacity="0.3"/>
+    <circle cx="${-r * 0.1}" cy="${r * 0.35}" r="${r * 0.22}" fill="#8e8c80" opacity="0.22"/>
+    <circle cx="${-r * 0.55}" cy="${r * 0.3}" r="${r * 0.1}" fill="#8e8c80" opacity="0.3"/>
+  </g>
+</g>`;
+
+const sceneDefs = (r) => `
+<radialGradient id="lanternHalo"><stop offset="0" stop-color="${C.gold}" stop-opacity="0.9"/><stop offset="0.3" stop-color="${C.bloom}" stop-opacity="0.45"/><stop offset="1" stop-color="${C.bloom}" stop-opacity="0"/></radialGradient>
+<radialGradient id="moonHalo"><stop offset="0.3" stop-color="${C.frost}" stop-opacity="0.35"/><stop offset="0.6" stop-color="${C.azure}" stop-opacity="0.12"/><stop offset="1" stop-color="${C.azure}" stop-opacity="0"/></radialGradient>
+<radialGradient id="moonFace" cx="0.35" cy="0.4" r="0.7"><stop offset="0" stop-color="#fbf8ec"/><stop offset="0.7" stop-color="${C.moon}"/><stop offset="1" stop-color="#b9b6a6"/></radialGradient>
+<mask id="crescent" maskUnits="userSpaceOnUse" x="${-r}" y="${-r}" width="${2 * r}" height="${2 * r}">
+  <circle r="${r}" fill="#fff"/><circle cx="${r * 0.55}" cy="${-r * 0.18}" r="${r * 0.92}" fill="#000"/>
+</mask>
+<filter id="nebula" x="-30%" y="-100%" width="160%" height="300%"><feGaussianBlur stdDeviation="22"/></filter>
+<filter id="leafy" x="-5%" y="-10%" width="110%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" seed="9"/><feDisplacementMap in="SourceGraphic" scale="16" xChannelSelector="R" yChannelSelector="G"/></filter>`;
+
+// Blue galactic band with star dust packed along it.
+function nebula(rand, cx, cy, rx, ry, angle) {
+  const rad = angle * Math.PI / 180;
+  const dust = Array.from({ length: 140 }, () => {
+    const u = (rand() * 2 - 1) * rx, v = (rand() + rand() + rand() - 1.5) / 1.5 * ry;
+    const x = cx + u * Math.cos(rad) - v * Math.sin(rad), y = cy + u * Math.sin(rad) + v * Math.cos(rad);
+    const tw = rand() < 0.3
+      ? `<animate attributeName="opacity" values="0.2;1;0.2" dur="${r2(2 + rand() * 4)}s" begin="${r2(-rand() * 6)}s" repeatCount="indefinite"/>`
+      : '';
+    return `<circle cx="${r2(x)}" cy="${r2(y)}" r="${r2(0.3 + rand() * 0.9)}" fill="${rand() > 0.5 ? C.snow : C.frost}">${tw}</circle>`;
+  }).join('');
+  return `<g transform="rotate(${angle} ${cx} ${cy})">
+  <ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="${C.azure}" opacity="0.4" filter="url(#nebula)"><animate attributeName="opacity" values="0.3;0.5;0.3" dur="10s" repeatCount="indefinite"/></ellipse>
+  <ellipse cx="${cx}" cy="${cy}" rx="${rx * 0.7}" ry="${ry * 0.3}" fill="${C.ice}" opacity="0.35" filter="url(#nebula)"/>
+</g>${dust}`;
 }
 
 // ───────────────────────────── HEADER ─────────────────────────────
 function header() {
-  const W = 1200, H = 360, HZ = 262, VX = 600;
+  const W = 1200, H = 360, HZ = 262, VX = 600, MR = 56;
   const rand = rng(11);
 
-  const far = forest(rand, Array.from({ length: 11 }, (_, i) => [40 + i * 112 + rand() * 40, HZ, 90 + rand() * 50, 3, 3]), { twinkle: 0.15 });
-  const near = forest(rand, [
-    [55, HZ, 205, 9], [165, HZ, 160, 7], [1035, HZ, 160, 7], [1145, HZ, 205, 9],
-  ]);
-
-  const shafts = [[180, 90], [420, 60], [700, 80], [960, 70]].map(([x, w], i) =>
-    `<polygon points="${x},0 ${x + w},0 ${x + w * 2.4 - 80},${HZ} ${x + w * 1.2 - 140},${HZ}" fill="url(#shaft)"><animate attributeName="opacity" values="0.25;0.75;0.25" dur="${7 + i * 1.5}s" begin="${-i * 2}s" repeatCount="indefinite"/></polygon>`,
-  ).join('');
-
-  const stars = Array.from({ length: 45 }, () => {
-    const x = r2(rand() * W), y = r2(rand() * 150);
+  const stars = Array.from({ length: 70 }, () => {
+    const x = r2(rand() * W), y = r2(rand() * 200);
     return `<circle cx="${x}" cy="${y}" r="${r2(0.4 + rand())}" fill="${C.frost}"><animate attributeName="opacity" values="0.1;0.9;0.1" dur="${r2(2 + rand() * 4)}s" begin="${r2(-rand() * 6)}s" repeatCount="indefinite"/></circle>`;
   }).join('');
 
-  // crystal dust slowly falling and spinning
-  const dust = Array.from({ length: 22 }, () => {
-    const x = r2(rand() * W), d = r2(10 + rand() * 10), b = r2(-rand() * 20), s = r2(2 + rand() * 2.5);
-    return `<g opacity="0.8"><path d="${sparkle(s)}" fill="${C.snow}"><animateTransform attributeName="transform" type="rotate" values="0;360" dur="${r2(4 + rand() * 4)}s" repeatCount="indefinite"/></path>` +
+  const farWoods = canopy(rand, { x0: 0, x1: W, top: (x) => 205 + 18 * Math.sin(x / 70), base: HZ, n: 70, specks: 60, shade: ['#0a3a70', '#0c4580', '#0e4d8c'], rim: '#3a95e0' });
+  const left = canopy(rand, { x0: -20, x1: 400, top: (x) => 60 + Math.pow(Math.max(x, 0) / 400, 1.6) * 170, base: HZ, n: 110, specks: 220, glows: 4 });
+  const right = canopy(rand, { x0: 800, x1: W + 20, top: (x) => 230 - Math.pow(Math.max(x - 800, 0) / 400, 1.4) * 100, base: HZ, n: 100, specks: 200, glows: 4 });
+
+  const dust = Array.from({ length: 18 }, () => {
+    const x = r2(rand() * W), d = r2(10 + rand() * 10), b = r2(-rand() * 20), s = r2(1.8 + rand() * 2.2);
+    return `<g opacity="0"><path d="${sparkle(s)}" fill="${C.snow}"><animateTransform attributeName="transform" type="rotate" values="0;360" dur="${r2(4 + rand() * 4)}s" repeatCount="indefinite"/></path>` +
       `<animateMotion path="M${x} -10 C${r2(x + 40)} 80 ${r2(x - 40)} 170 ${r2(x + 20)} ${HZ}" dur="${d}s" begin="${b}s" repeatCount="indefinite"/>` +
       `<animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.1;0.85;1" dur="${d}s" begin="${b}s" repeatCount="indefinite"/></g>`;
   }).join('');
@@ -86,28 +128,17 @@ function header() {
 ${fontFaces()}
 .title{font-family:${FONT_DISPLAY};font-weight:900;font-size:58px;letter-spacing:8px}
 .sub{font-family:${FONT_DISPLAY};font-weight:700;font-size:18px;letter-spacing:7px;fill:${C.frost}}
-.tag{font-family:${FONT_DISPLAY};font-weight:700;font-size:13px;letter-spacing:5px;fill:${C.ice}}
+.tag{font-family:${FONT_DISPLAY};font-weight:700;font-size:13px;letter-spacing:5px;fill:${C.gold}}
 .hud{font-family:${FONT_DISPLAY};font-weight:700;font-size:12px;letter-spacing:2px;fill:${C.frost}}
 .boot{animation:boot 2.4s ease-out both}
 @keyframes boot{0%{opacity:0;filter:blur(14px)}100%{opacity:1;filter:blur(0)}}
-.breathe{animation:breathe 6s ease-in-out infinite}
-@keyframes breathe{50%{opacity:.75}}
 </style>
 <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-  <stop offset="0" stop-color="#01030f"/><stop offset="0.55" stop-color="#05173f"/><stop offset="1" stop-color="#0b4a6e"/>
+  <stop offset="0" stop-color="#021433"/><stop offset="0.5" stop-color="#053062"/><stop offset="1" stop-color="#0a4a8c"/>
 </linearGradient>
 <linearGradient id="lake" x1="0" y1="0" x2="0" y2="1">
-  <stop offset="0" stop-color="#0b4a6e"/><stop offset="1" stop-color="${C.deep}"/>
+  <stop offset="0" stop-color="#0d4a86"/><stop offset="1" stop-color="${C.night}"/>
 </linearGradient>
-<linearGradient id="bark" gradientUnits="userSpaceOnUse" x1="0" y1="${HZ}" x2="0" y2="0">
-  <stop offset="0" stop-color="#22d3ee"/><stop offset="0.6" stop-color="${C.frost}"/><stop offset="1" stop-color="${C.lilac}"/>
-</linearGradient>
-<linearGradient id="shaft" x1="0" y1="0" x2="0" y2="1">
-  <stop offset="0" stop-color="${C.frost}" stop-opacity="0.16"/><stop offset="1" stop-color="${C.ice}" stop-opacity="0"/>
-</linearGradient>
-<radialGradient id="aura" cx="0.5" cy="0.5" r="0.5">
-  <stop offset="0" stop-color="${C.azure}" stop-opacity="0.35"/><stop offset="1" stop-color="${C.azure}" stop-opacity="0"/>
-</radialGradient>
 <linearGradient id="titleFill" x1="0" y1="0" x2="0" y2="1">
   <stop offset="0" stop-color="#ffffff"/><stop offset="0.55" stop-color="${C.frost}"/><stop offset="1" stop-color="${C.ice}"/>
 </linearGradient>
@@ -117,6 +148,7 @@ ${fontFaces()}
 <linearGradient id="orn" x1="0" y1="0" x2="1" y2="0">
   <stop offset="0" stop-color="${C.ice}" stop-opacity="0"/><stop offset="0.5" stop-color="${C.snow}"/><stop offset="1" stop-color="${C.ice}" stop-opacity="0"/>
 </linearGradient>
+<radialGradient id="mist" cx="0.5" cy="0.5" r="0.5"><stop offset="0" stop-color="${C.azure}" stop-opacity="0.45"/><stop offset="1" stop-color="${C.azure}" stop-opacity="0"/></radialGradient>
 <mask id="shineMask">
   <rect x="-200" y="60" width="200" height="90" fill="url(#shine)" transform="skewX(-20)">
     <animate attributeName="x" values="-200;${W + 200}" dur="5s" begin="2.4s" repeatCount="indefinite"/>
@@ -133,25 +165,26 @@ ${fontFaces()}
   </feTurbulence>
   <feDisplacementMap in="SourceGraphic" scale="14" xChannelSelector="R" yChannelSelector="G"/>
 </filter>
+${sceneDefs(MR)}
 ${glow('g2', 2)}${glow('g4', 4)}${glow('g8', 8)}
 ${pyreflyDefs()}
 </defs>
 
 <rect width="${W}" height="${H}" fill="url(#sky)"/>
+${nebula(rand, 760, 110, 560, 55, -16)}
 ${stars}
-<ellipse cx="${VX}" cy="120" rx="460" ry="170" fill="url(#aura)" class="breathe"/>
-${shafts}
+${moon(1068, 92, MR)}
+<ellipse cx="${VX}" cy="${HZ - 10}" rx="520" ry="70" fill="url(#mist)"/>
 
 <g id="woods">
-  <g stroke="url(#bark)" stroke-linecap="round" opacity="0.28">${far.branches}</g>
-  <g opacity="0.35">${far.shards}</g>
-  <g stroke="url(#bark)" stroke-linecap="round" opacity="0.85" filter="url(#g2)">${near.branches}</g>
-  <g filter="url(#g4)">${near.shards}</g>
+  ${farWoods}
+  ${left}
+  ${right}
 </g>
 
-<!-- frozen lake with rippling reflection -->
+<!-- lake with rippling reflection, lantern orbs and crystals -->
 <rect x="0" y="${HZ}" width="${W}" height="${H - HZ}" fill="url(#lake)"/>
-<g clip-path="url(#lakeClip)" opacity="0.4" filter="url(#ripple)">
+<g clip-path="url(#lakeClip)" opacity="0.45" filter="url(#ripple)">
   <use href="#woods" transform="translate(0 ${2 * HZ}) scale(1 -1)"/>
 </g>
 <g stroke="${C.frost}" stroke-linecap="round" opacity="0.5">
@@ -160,9 +193,11 @@ ${shafts}
     return `<line y1="${r2(y)}" y2="${r2(y)}" x1="${r2(x)}" x2="${r2(x + w)}" stroke-width="${r2(0.6 + i * 0.12)}" stroke-dasharray="${r2(w / 3)} ${r2(w / 5)}"><animate attributeName="stroke-dashoffset" values="0;${r2(w)}" dur="${d}s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.2;0.8;0.2" dur="${d}s" repeatCount="indefinite"/></line>`;
   }).join('')}
 </g>
-<line x1="0" y1="${HZ}" x2="${W}" y2="${HZ}" stroke="url(#orn)" stroke-width="2" filter="url(#g4)"><animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="5s" repeatCount="indefinite"/></line>
+<line x1="0" y1="${HZ}" x2="${W}" y2="${HZ}" stroke="url(#orn)" stroke-width="1.5" filter="url(#g4)"><animate attributeName="stroke-opacity" values="0.4;0.9;0.4" dur="5s" repeatCount="indefinite"/></line>
+${[[118, 236, 1.1], [262, 248, 0.7], [395, 252, 0.5], [808, 250, 0.55], [952, 240, 0.85], [1110, 230, 1.15]].map(([x, y, s]) => lantern(rand, x, y, HZ, s)).join('')}
+${waterCrystals(rand, 40, 10, W - 10, HZ + 6, H - 8)}
 
-${pyreflies(rand, 34, { x0: 0, x1: W, y0: HZ + 20, y1: 20, dMin: 9, dMax: 18 })}
+${pyreflies(rand, 34, { x0: 0, x1: W, y0: HZ + 10, y1: 20, dMin: 9, dMax: 18, rMin: 0.8, rMax: 2.2 })}
 ${dust}
 
 <!-- title -->
@@ -177,7 +212,7 @@ ${dust}
     <animate attributeName="x1" from="0" to="-300" dur="1.6s" begin="1s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.2 1" keyTimes="0;1"/>
     <animate attributeName="x2" from="0" to="300" dur="1.6s" begin="1s" fill="freeze" calcMode="spline" keySplines="0.3 0 0.2 1" keyTimes="0;1"/>
   </line>
-  <path d="M0 -6L6 0L0 6L-6 0Z" fill="${C.snow}" filter="url(#g4)"><animateTransform attributeName="transform" type="rotate" values="0;360" dur="10s" repeatCount="indefinite"/></path>
+  <path d="M0 -6L6 0L0 6L-6 0Z" fill="${C.gold}" filter="url(#g4)"><animateTransform attributeName="transform" type="rotate" values="0;360" dur="10s" repeatCount="indefinite"/></path>
 </g>
 <g clip-path="url(#subReveal)">
   <text x="${VX}" y="180" text-anchor="middle" class="sub" filter="url(#g2)">${esc(sub)}</text>
@@ -188,10 +223,9 @@ ${dust}
   ${corner(18, 18, 1, 1)}${corner(W - 18, 18, -1, 1)}${corner(18, H - 18, 1, -1)}${corner(W - 18, H - 18, -1, -1)}
 </g>
 <g class="hud" opacity="0.9">
-  <text x="58" y="40">LV <tspan fill="${C.gold}">99</tspan>  ·  DEVELOPER</text>
-  <text x="${W - 58}" y="40" text-anchor="end">HP <tspan fill="${C.aqua}">9999</tspan>/9999  MP <tspan fill="${C.lilac}">999</tspan>/999</text>
-  <text x="58" y="${H - 30}">LAT -21.1356 · LON -44.2614</text>
-  <text x="${W - 58}" y="${H - 30}" text-anchor="end">UFSJ · MG · BRASIL</text>
+  <text x="58" y="40">UFSJ · MG · BRASIL</text>
+  <text x="58" y="${H - 30}">LV <tspan fill="${C.gold}">99</tspan>  ·  DEVELOPER</text>
+  <text x="${W - 58}" y="${H - 30}" text-anchor="end">HP <tspan fill="${C.ice}">9999</tspan>/9999  MP <tspan fill="${C.gold}">999</tspan>/999</text>
 </g>
 </svg>`;
 }
@@ -258,7 +292,7 @@ ${groups.join('\n')}
 // ──────────────────────────── TERMINAL ────────────────────────────
 function terminal() {
   const FS = 14, CW = FS * MONO_ADVANCE, LH = 24, PAD = 44, TOP = 64;
-  const K = C.bloom, ID = C.ice, KEY = C.lilac, STR = '#99f6e4', P = '#9fb3d9';
+  const K = C.bloom, ID = C.ice, KEY = C.lilac, STR = '#c6ecd9', P = '#8fb3d9';
   // Each line is a list of [text, color] tokens.
   const field = (k, v) => {
     const key = [`  ${k}:`.padEnd(15, ' '), KEY];
@@ -402,7 +436,7 @@ ${windowSheen(2, 6, W - 4, H - 12, { dur: 9 })}
 
 // ───────────────────────────── FOOTER ─────────────────────────────
 function footer() {
-  const W = 1200, H = 220, HZ = 120;
+  const W = 1200, H = 220, HZ = 130;
   const rand = rng(23);
   const wave = (base, amp, phase) => {
     const pts = (p) => {
@@ -416,7 +450,9 @@ function footer() {
     };
     return [pts(phase), pts(phase + Math.PI), pts(phase)].join(';');
   };
-  const woods = forest(rand, [[40, HZ, 95, 4], [130, HZ, 75, 3], [230, HZ, 60, 2, 3], [970, HZ, 60, 2, 3], [1070, HZ, 75, 3], [1160, HZ, 95, 4]], { twinkle: 0.3 });
+  const left = canopy(rand, { x0: -20, x1: 300, top: (x) => 40 + Math.pow(Math.max(x, 0) / 300, 1.5) * 75, base: HZ, n: 70, specks: 120, glows: 2 });
+  const right = canopy(rand, { x0: 900, x1: W + 20, top: (x) => 115 - Math.pow(Math.max(x - 900, 0) / 300, 1.5) * 75, base: HZ, n: 70, specks: 120, glows: 2 });
+  const far = canopy(rand, { x0: 0, x1: W, top: (x) => 112 + 8 * Math.sin(x / 60), base: HZ, n: 50, specks: 40, shade: ['#0a3a70', '#0c4580', '#0e4d8c'], rim: '#3a95e0' });
   return `<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 ${W} ${H}" role="img" aria-label="Thanks for visiting">
 <defs>
 <style>
@@ -424,24 +460,26 @@ ${fontFaces()}
 .h{font-family:${FONT_DISPLAY};font-weight:800;font-size:24px;letter-spacing:9px}
 .m{font-family:${FONT_DISPLAY};font-weight:700;font-size:13px;letter-spacing:4px}
 </style>
-<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#01030f"/><stop offset="1" stop-color="#0b4a6e"/></linearGradient>
-<linearGradient id="bark" gradientUnits="userSpaceOnUse" x1="0" y1="${HZ}" x2="0" y2="0"><stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="${C.lilac}"/></linearGradient>
-<linearGradient id="w1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b3a5c"/><stop offset="1" stop-color="${C.deep}"/></linearGradient>
-<linearGradient id="w2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${C.ice}" stop-opacity="0.35"/><stop offset="1" stop-color="${C.lilac}" stop-opacity="0.3"/></linearGradient>
-<linearGradient id="w3" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="${C.bloom}" stop-opacity="0.25"/><stop offset="1" stop-color="${C.azure}" stop-opacity="0.25"/></linearGradient>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#021433"/><stop offset="1" stop-color="#0a4a8c"/></linearGradient>
+<linearGradient id="w1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0d4a86"/><stop offset="1" stop-color="${C.deep}"/></linearGradient>
+<linearGradient id="w2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${C.azure}" stop-opacity="0.35"/><stop offset="1" stop-color="${C.ice}" stop-opacity="0.3"/></linearGradient>
+<linearGradient id="w3" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="${C.bloom}" stop-opacity="0.18"/><stop offset="1" stop-color="${C.azure}" stop-opacity="0.25"/></linearGradient>
 <linearGradient id="tg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="${C.ice}"/></linearGradient>
+${sceneDefs(30)}
 ${pyreflyDefs()}
-${glow('g', 3)}
+${glow('g', 3)}${glow('g2', 2)}${glow('g4', 4)}${glow('g8', 8)}
 </defs>
 <rect width="${W}" height="${H}" fill="url(#sky)"/>
-<g stroke="url(#bark)" stroke-linecap="round" opacity="0.3">${woods.branches}</g>
-<g opacity="0.45">${woods.shards}</g>
-<text x="${W / 2}" y="58" text-anchor="middle" class="h" fill="url(#tg)" filter="url(#g)">THANKS FOR VISITING</text>
-<text x="${W / 2}" y="88" text-anchor="middle" class="m" fill="${C.frost}">~ UNTIL OUR PATHS CROSS AGAIN ~</text>
-<path fill="url(#w3)"><animate attributeName="d" values="${wave(HZ + 6, 8, 0.8)}" dur="9s" repeatCount="indefinite"/></path>
-<path fill="url(#w2)"><animate attributeName="d" values="${wave(HZ + 16, 7, 2)}" dur="7s" repeatCount="indefinite"/></path>
-<path fill="url(#w1)"><animate attributeName="d" values="${wave(HZ + 28, 6, 0)}" dur="11s" repeatCount="indefinite"/></path>
-${pyreflies(rand, 26, { x0: 0, x1: W, y0: H - 20, y1: 10, dMin: 8, dMax: 15 })}
+${nebula(rand, 600, 50, 600, 35, 6)}
+${far}${left}${right}
+<text x="${W / 2}" y="62" text-anchor="middle" class="h" fill="url(#tg)" filter="url(#g)">THANKS FOR VISITING</text>
+<text x="${W / 2}" y="92" text-anchor="middle" class="m" fill="${C.gold}">~ UNTIL OUR PATHS CROSS AGAIN ~</text>
+<path fill="url(#w3)"><animate attributeName="d" values="${wave(HZ + 2, 6, 0.8)}" dur="9s" repeatCount="indefinite"/></path>
+<path fill="url(#w2)"><animate attributeName="d" values="${wave(HZ + 12, 6, 2)}" dur="7s" repeatCount="indefinite"/></path>
+<path fill="url(#w1)"><animate attributeName="d" values="${wave(HZ + 24, 5, 0)}" dur="11s" repeatCount="indefinite"/></path>
+${[[150, 112, 0.8], [330, 120, 0.5], [870, 120, 0.5], [1050, 110, 0.8]].map(([x, y, s]) => lantern(rand, x, y, HZ + 10, s)).join('')}
+${waterCrystals(rand, 30, 10, W - 10, HZ + 30, H - 8)}
+${pyreflies(rand, 26, { x0: 0, x1: W, y0: H - 20, y1: 10, dMin: 8, dMax: 15, rMin: 0.8, rMax: 2 })}
 </svg>`;
 }
 

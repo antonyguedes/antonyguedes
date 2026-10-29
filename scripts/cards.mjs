@@ -100,7 +100,7 @@ function statsCard() {
   const rows = [
     ['Total Stars', stars, C.gold],
     ['Total Forks', forks, C.ice],
-    ['Public Repos', user.public_repos, C.bloom],
+    ['Public Repos', user.public_repos, C.frost],
     ['Followers', user.followers, C.aqua],
     ...(commits != null ? [['Commits', commits, C.lilac]] : []),
   ];
