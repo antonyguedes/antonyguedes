@@ -40,12 +40,12 @@
 #### `▸ blockchain`
 
 <img src="https://img.shields.io/badge/Ethereum-3C3C3D?style=for-the-badge&logo=ethereum&logoColor=white" alt="Ethereum" />
-<img src="https://img.shields.io/badge/Solidity-E6E3EC?style=for-the-badge&logo=solidity&logoColor=2B247C" alt="Solidity" />
+<img src="https://img.shields.io/badge/Solana-9945FF?style=for-the-badge&logo=solana&logoColor=white" alt="Solana" />
 <img src="https://img.shields.io/badge/Sui-298DFF?style=for-the-badge&logo=sui&logoColor=white" alt="Sui" />
 
 #### `▸ languages`
 
-<img src="https://skillicons.dev/icons?i=go,js,ts,rust,c,cpp,ruby,python&theme=dark" alt="Go, JavaScript, TypeScript, Rust, C, C++, Ruby, Python" />
+<img src="https://skillicons.dev/icons?i=go,js,ts,rust,c,solidity,ruby,python&theme=dark" alt="Go, JavaScript, TypeScript, Rust, C, Solidity, Ruby, Python" />
 
 #### `▸ frontend`
 
